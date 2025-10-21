@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}書籍清單{% endblock %}
+{% block content %}
+  <h1>書籍清單</h1>
+  <div class="row">
+    {% for book in books %}
+      <div class="col-md-6 mb-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">
+              <a href="{{ book.id }}">{{ book.title }}</a>
+            </h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{ book.author }}</h6>
+            <p class="card-text">ISBN: {{ book.isbn }}<br>出版：{{ book.published_date }}</p>
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <p>目前沒有書籍。</p>
+    {% endfor %}
+  </div>
+{% endblock %}
