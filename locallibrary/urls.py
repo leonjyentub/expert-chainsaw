@@ -22,5 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('catalog/', views.index, name='index'),
     path('catalog/books/', views.book_list, name='book_list'),
-    path('catalog/books/<int:pk>/', views.book),
+    path('catalog/books/<int:pk>/', views.book, name='book_detail'),
+    path('catalog/books/add/', views.add_book, name='add_book'),
 ]

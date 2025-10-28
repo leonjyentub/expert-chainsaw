@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}新增書籍{% endblock %}
+{% block content %}
+  <h1>新增書籍</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">新增</button>
+  </form>
+{% endblock %}

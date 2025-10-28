@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample Template</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Sample Page</h1>
+    </header>
+    <main>
+        <p>This is a sample HTML template using Flask's Jinja2 templating engine.</p>
+        <form method="post" method="post" action="/submit">
+            <label for="fname">First name:</label><br>
+            <input type="text" id="fname" name="fname" value="預設值"><br>
+            <label for="lname">Last name:</label><br>
+            <input type="text" id="lname" name="lname"><br>
+            <label for="lname">這裡是密碼:</label><br>
+            <input type="password" id="lname" name="password"><br>
+            <input type="submit" value="按我就對了">
+            <input type="reset" value="重設">
+        </form>
+    </main>
+    <footer>
+        <p>&copy; 2024 Sample Company</p>
+    </footer>
+</body>
+</html>
