@@ -2,9 +2,49 @@
 {% block title %}新增書籍{% endblock %}
 {% block content %}
   <h1>新增書籍</h1>
+  
+  <!-- 使用 form.as_p 自動生成 -->
+  <h2>使用 form.as_p</h2>
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit" class="btn btn-primary">新增</button>
+  </form>
+  
+  <hr>
+  
+  <!-- 手動排列每個字段 -->
+  <h2>手動排列字段</h2>
+  <form method="post">
+    {% csrf_token %}
+    <p>
+      {{ form.title.label_tag }}
+      {{ form.title }}
+      {% if form.title.errors %}
+        <span class="error">{{ form.title.errors }}</span>
+      {% endif %}
+    </p>
+    <p>
+      {{ form.author.label_tag }}
+      {{ form.author }}
+      {% if form.author.errors %}
+        <span class="error">{{ form.author.errors }}</span>
+      {% endif %}
+    </p>
+    <p>
+      {{ form.published_date.label_tag }}
+      {{ form.published_date }}
+      {% if form.published_date.errors %}
+        <span class="error">{{ form.published_date.errors }}</span>
+      {% endif %}
+    </p>
+    <p>
+      {{ form.isbn.label_tag }}
+      {{ form.isbn }}
+      {% if form.isbn.errors %}
+        <span class="error">{{ form.isbn.errors }}</span>
+      {% endif %}
+    </p>
+    <button type="submit" class="btn btn-success">新增（手動排列）</button>
   </form>
 {% endblock %}
