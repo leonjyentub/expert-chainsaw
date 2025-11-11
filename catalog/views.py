@@ -27,7 +27,7 @@ def add_book(request):
                 isbn=form.cleaned_data['isbn']
             )
             new_book.save()
-            return HttpResponse("Book added successfully!")
+            #return HttpResponse("Book added successfully!")
     else:
         form = BookForm()
     return render(request, 'add_book.html', {'form': form})
@@ -38,7 +38,7 @@ def add_book_model_form(request):
         form = BookModelForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponse("Book added successfully using ModelForm!")
+            #return HttpResponse("Book added successfully using ModelForm!")
     else:
         form = BookModelForm()
     return render(request, 'add_book.html', {'form': form})
