@@ -13,7 +13,7 @@ class UserRegisterForm(forms.ModelForm):
     def clean_password2(self):
         cd = self.cleaned_data
         if cd['password'] != cd['password2']:
-            raise forms.ValidationError('Passwords don\'t match.')
+            raise forms.ValidationError('密碼不一樣，驗證失敗了啦')
         return cd['password2']
 
 class ProfileUpdateForm(forms.ModelForm):

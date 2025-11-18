@@ -9,6 +9,8 @@ class BookAdmin(admin.ModelAdmin):
     search_fields = ('title', 'author', 'isbn')
     list_filter = ('published_date',)
 
+#admin.site.register(Book, BookAdmin)
+
 @admin.register(BorrowRecord)
 class BorrowRecordAdmin(admin.ModelAdmin):
     list_display = ('user', 'book', 'borrow_date', 'return_date')

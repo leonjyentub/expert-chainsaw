@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h2>Register</h2>
+  <h2>註冊</h2>
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ user_form.as_p }}
     {{ profile_form.as_p }}
-    <button type="submit">Register</button>
+    <button type="submit">註冊按我就對了</button>
   </form>
 {% endblock %}
