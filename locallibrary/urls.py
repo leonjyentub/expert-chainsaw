@@ -22,6 +22,8 @@ from django.conf.urls.static import static
 from catalog import views
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # Home page redirects to urls 'catalog/'
+    path('', views.book_list, name='home'),
     path('catalog/', views.index, name='index'),
     path('catalog/books/', views.book_list, name='book_list'),
     path('catalog/books/<int:pk>/', views.book, name='book_detail'),
