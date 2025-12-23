@@ -2,14 +2,33 @@
 {% block title %}書籍清單{% endblock %}
 {% block content %}
   <h1>書籍清單</h1>
-  <div class="mb-3"> <!-- search text input and submit button inside a form-->
-    <form method="get" action="{% url 'book_search' %}">
-      <div class="input-group">
-        <input type="text" name="q" class="form-control" placeholder="搜尋書籍..." value="{{ query|default:'' }}">
-        <button class="btn btn-primary" type="submit">搜尋</button>
-        <input type="reset" class="btn btn-secondary" value="清除" onclick="window.location.href='{% url 'book_list' %}'">
+  <div class="mb-4">
+    <form method="get" action="{% url 'book_search' %}" class="row g-2 align-items-center">
+      <div class="col-12 col-md-6">
+        <label for="q" class="visually-hidden">搜尋書籍</label>
+        <div class="input-group">
+          <span class="input-group-text" id="search-addon">🔍</span>
+          <input type="search" id="q" name="q" class="form-control" placeholder="搜尋書名或摘要..." aria-label="搜尋書籍" aria-describedby="search-addon" value="{{ query|default:'' }}">
+        </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <label for="author" class="visually-hidden">作者</label>
+        <div class="input-group">
+          <span class="input-group-text">👤</span>
+          <input type="text" id="author" name="author" class="form-control" placeholder="作者名稱" aria-label="作者" value="{{ author|default:'' }}">
+        </div>
+      </div>
+      <div class="col-12 col-md-2 d-flex gap-2">
+        <button type="submit" class="btn btn-primary w-100">搜尋</button>
+        <button type="button" class="btn btn-outline-secondary w-100" onclick="clearSearch()">清除</button>
       </div>
     </form>
+    <script>
+      function clearSearch(){
+        // redirect to the base book list to remove any query params
+        window.location.href = "{% url 'book_list' %}";
+      }
+    </script>
   </div>
   <div class="row">
     {% for book in books %}
