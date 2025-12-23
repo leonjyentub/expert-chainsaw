@@ -8,6 +8,15 @@ from .forms import BookForm
 def index(request):
     return render(request, 'index.html')
 
+# filter books by search query if provided
+def book_search(request):
+    query = request.GET.get('q', '')
+    if query:
+        books = Book.objects.filter(title=query).order_by('title')
+    else:
+        books = Book.objects.all().order_by('title')
+    return render(request, 'book_list.html', {'books': books, 'query': query})
+
 def book_list(request):
     books = Book.objects.all().order_by('title')
     return render(request, 'book_list.html', {'books': books})

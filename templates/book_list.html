@@ -2,9 +2,17 @@
 {% block title %}書籍清單{% endblock %}
 {% block content %}
   <h1>書籍清單</h1>
+  <div class="mb-3"> <!-- search text input and submit button inside a form-->
+    <form method="get" action="{% url 'book_search' %}">
+      <div class="input-group">
+        <input type="text" name="q" class="form-control" placeholder="搜尋書籍..." value="{{ query|default:'' }}">
+        <button class="btn btn-primary" type="submit">搜尋</button>
+      </div>
+    </form>
+  </div>
   <div class="row">
     {% for book in books %}
-      <div class="col-md-6 mb-3">
+      <div class="col-sm-6 col-lg-4 mb-3">
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">

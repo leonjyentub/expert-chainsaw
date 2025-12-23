@@ -30,6 +30,7 @@ urlpatterns = [
     path('catalog/books/add/', views.add_book, name='add_book'),
     path('catalog/books/add2/', views.add_book_model_form, name='add_book_model_form'),
     path('accounts/', include('accounts.urls')),
+    path('catalog/book_search/', views.book_search, name='book_search'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
