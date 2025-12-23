@@ -11,12 +11,13 @@ def index(request):
 # filter books by search query if provided
 def book_search(request):
     query = request.GET.get('q', '')
-    if query:
+    author = request.GET.get('author', '')
+    if query or author:
         #改使用模糊搜尋
-        books = Book.objects.filter(title__icontains=query).order_by('title')
+        books = Book.objects.filter(title__icontains=query, author__icontains=author).order_by('title')
     else:
         books = Book.objects.all().order_by('title')
-    return render(request, 'book_list.html', {'books': books, 'query': query})
+    return render(request, 'book_list.html', {'books': books, 'query': query, 'author': author})
 
 def book_list(request):
     books = Book.objects.all().order_by('title')
