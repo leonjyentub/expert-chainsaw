@@ -14,8 +14,22 @@
       <div class="col-12 col-md-4">
         <label for="author" class="visually-hidden">作者</label>
         <div class="input-group">
-          <span class="input-group-text">👤</span>
+          <span class="input-group-text">👤🚐</span>
           <input type="text" id="author" name="author" class="form-control" placeholder="作者名稱" aria-label="作者" value="{{ author|default:'' }}">
+        </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <label for="published_from" class="form-label visually-hidden">出版起始日</label>
+        <div class="input-group">
+          <span class="input-group-text">從</span>
+          <input type="date" id="published_from" name="published_from" class="form-control" value="{{ published_from|default:'' }}" aria-label="出版起始日">
+        </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <label for="published_to" class="form-label visually-hidden">出版結束日</label>
+        <div class="input-group">
+          <span class="input-group-text">到</span>
+          <input type="date" id="published_to" name="published_to" class="form-control" value="{{ published_to|default:'' }}" aria-label="出版結束日">
         </div>
       </div>
       <div class="col-12 col-md-2 d-flex gap-2">

@@ -9,15 +9,43 @@ def index(request):
     return render(request, 'index.html')
 
 # filter books by search query if provided
+from datetime import datetime
 def book_search(request):
-    query = request.GET.get('q', '')
-    author = request.GET.get('author', '')
-    if query or author:
-        #改使用模糊搜尋
-        books = Book.objects.filter(title__icontains=query, author__icontains=author).order_by('title')
-    else:
-        books = Book.objects.all().order_by('title')
-    return render(request, 'book_list.html', {'books': books, 'query': query, 'author': author})
+    query = request.GET.get('q', '').strip()
+    author = request.GET.get('author', '').strip()
+    published_from = request.GET.get('published_from', '').strip()
+    published_to = request.GET.get('published_to', '').strip()
+
+    books = Book.objects.all()
+    if query:
+        books = books.filter(title__icontains=query)
+    if author:
+        books = books.filter(author__icontains=author)
+
+    if published_from:
+        try:
+            df = datetime.strptime(published_from, '%Y-%m-%d').date()
+            books = books.filter(published_date__gte=df)
+        except ValueError:
+            # 非法日期，忽略該條件
+            pass
+
+    if published_to:
+        try:
+            dt = datetime.strptime(published_to, '%Y-%m-%d').date()
+            books = books.filter(published_date__lte=dt)
+        except ValueError:
+            pass
+
+    books = books.order_by('-published_date')
+    return render(request, 'book_list.html', 
+                  {
+                      'books': books, 
+                      'query': query, 
+                      'author': author,
+                      'published_from': published_from,
+                      'published_to': published_to
+                  })
 
 def book_list(request):
     books = Book.objects.all().order_by('title')
