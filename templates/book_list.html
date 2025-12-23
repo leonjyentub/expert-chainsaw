@@ -7,6 +7,7 @@
       <div class="input-group">
         <input type="text" name="q" class="form-control" placeholder="搜尋書籍..." value="{{ query|default:'' }}">
         <button class="btn btn-primary" type="submit">搜尋</button>
+        <input type="reset" class="btn btn-secondary" value="清除" onclick="window.location.href='{% url 'book_list' %}'">
       </div>
     </form>
   </div>

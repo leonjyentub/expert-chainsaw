@@ -12,7 +12,8 @@ def index(request):
 def book_search(request):
     query = request.GET.get('q', '')
     if query:
-        books = Book.objects.filter(title=query).order_by('title')
+        #改使用模糊搜尋
+        books = Book.objects.filter(title__icontains=query).order_by('title')
     else:
         books = Book.objects.all().order_by('title')
     return render(request, 'book_list.html', {'books': books, 'query': query})
